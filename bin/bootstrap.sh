@@ -26,7 +26,7 @@ function install_ansible_and_git() {
             yum install ansible git -y
         fi
     else
-        echo -e "Error: Only RPM-based or DEB-based GNU/Linux distros are supported.\n"
+        echo -e "Error: Only RPM-based or DEB-based GNU/Linux distros are supported."
         exit 1
     fi
 }
