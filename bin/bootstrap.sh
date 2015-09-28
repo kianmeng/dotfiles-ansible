@@ -11,7 +11,7 @@ then
     sudo apt-get install -y ansible
 elif [[ $(python -mplatform | grep -Ei 'fedora|centos') ]];
 then
-    if [[$(id -u) -ne 0]];
+    if [[ $(id -u) -ne 0 ]];
     then
         su -
     else
