@@ -13,7 +13,7 @@ elif [[ $(python -mplatform | grep -Ei 'fedora|centos') ]];
 then
     su -
     yum install epel-release -y
-    yum install ansible
+    yum install ansible -y
 else
     echo -e "Error: Only RPM-based or DEB-based GNU/Linux distros are supported.\n"
 fi
