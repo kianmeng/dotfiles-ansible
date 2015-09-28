@@ -11,9 +11,13 @@ then
     sudo apt-get install -y ansible
 elif [[ $(python -mplatform | grep -Ei 'fedora|centos') ]];
 then
-    su -
-    yum install epel-release -y
-    yum install ansible -y
+    if [[$(id -u) -ne 0]];
+    then
+        su -
+    else
+        yum install epel-release -y
+        yum install ansible -y
+    fi
 else
     echo -e "Error: Only RPM-based or DEB-based GNU/Linux distros are supported.\n"
 fi
