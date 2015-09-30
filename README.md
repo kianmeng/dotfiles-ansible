@@ -17,3 +17,13 @@ localhost | success >> {
     "ping": "pong"
 }
 ```
+
+Test run the provisioning.
+```bash
+$ make dryrun
+```
+
+Run the provisioning.
+```bash
+$ make install
+```
