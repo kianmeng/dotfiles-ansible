@@ -6,7 +6,7 @@ check:
 
 # Test run the privisioning and unified diffs of the templates files.
 dryrun:
-	ansible-playbook localhost.yml --check --diff
+	ansible-playbook localhost.yml --check --diff --ask-sudo-pass
 
 # Getting information about the host machine, which is localhost.
 facts:
@@ -14,4 +14,4 @@ facts:
 
 # Privision the machine.
 install:
-	ansible-playbook localhost.yml --ask-sudo-pass
+	ansible-playbook localhost.yml --ask-sudo-pass 

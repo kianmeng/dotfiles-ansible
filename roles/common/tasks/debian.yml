@@ -1,0 +1,7 @@
+---
+# tasks file for common / debian
+# see http://docs.ansible.com/ansible/apt_module.html
+
+- name: update apt cache & dist-upgrade.
+  apt: update_cache=yes cache_valid_time=3600 upgrade=dist
+  sudo: yes
