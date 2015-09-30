@@ -4,7 +4,7 @@ Continuation of my [dotfiles](https://github.com/kianmeng/dotfiles) through
 [Ansible](http://www.ansible.com/), a tool to configure and manage computers.
 
 ### Installation
-Use the boostrap.sh Shell script to install Ansible. Either command with work.
+Use the boostrap.sh Shell script to install Ansible. Either command will work.
 ```bash
 $ wget -qO- https://goo.gl/35gHfP | bash -
 $ bash <(curl -L https://goo.gl/35gHfP)
