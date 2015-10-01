@@ -1,0 +1,11 @@
+---
+# tasks file for lxd / ubuntu
+# see https://linuxcontainers.org/lxd/getting-started-cli/
+
+- name: add lxd ppa
+  apt_repository: repo='ppa:ubuntu-lxc/lxd-stable' state=present update_cache=yes
+  sudo: yes
+
+- name: install lxd
+  apt:  name=lxd force=yes state=latest
+  sudo: yes
