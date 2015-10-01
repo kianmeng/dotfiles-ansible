@@ -1,4 +1,5 @@
 # Some build target to reduce typing. 
+.DEFAULT_GOAL :=dryrun
 
 # Check for syntax errors.
 check:
