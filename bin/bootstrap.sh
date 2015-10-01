@@ -15,15 +15,15 @@ function install_ansible_and_git() {
     then
         sudo apt-add-repository -y ppa:ansible/ansible
         sudo apt-get update
-        sudo apt-get install -y ansible git
+        sudo apt-get install -y ansible git make
     elif [[ $(python -mplatform | grep -Ei 'fedora|centos') ]];
     then
         if [[ $(id -u) -ne 0 ]];
         then
             su -
         else
-            yum install epel-release -y
-            yum install ansible git -y
+            yum install -y epel-release
+            yum install -y ansible git make
         fi
     else
         echo -e "Error: Only RPM-based or DEB-based GNU/Linux distros are supported."
