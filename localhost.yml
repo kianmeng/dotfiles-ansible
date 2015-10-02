@@ -4,4 +4,5 @@
     - common
     - git
     - tmux
+    - screen
     - lxd
