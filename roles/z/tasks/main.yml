@@ -1,0 +1,15 @@
+---
+# tasks file for z
+
+- name: clone z repository 
+  git: repo=https://github.com/rupa/z.git dest=/tmp/z
+
+- name: add z.sh to my customized bash
+  copy: src=/tmp/z/z.sh dest=~/.bash.d/z.sh
+
+- name: install the z.sh man page
+  sudo: yes
+  copy: src=/tmp/z/z.1 dest=/usr/local/man/man1/z.1
+
+- name: clean up local repository
+  file: path=/tmp/z state=absent

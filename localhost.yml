@@ -1,9 +1,10 @@
 ---
 - hosts: localhost
   roles:
-    - common
+      #- common
     - bash
     - git
-    - tmux
-    - screen
-    - lxd
+    - z
+      #- tmux
+      #- screen
+      #- lxd
