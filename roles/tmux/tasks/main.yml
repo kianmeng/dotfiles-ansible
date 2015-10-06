@@ -6,3 +6,6 @@
 
 - name: create symlink
   file: src={{ playbook_dir }}/roles/tmux/files/.tmux.conf  dest=~/.tmux.conf state=link
+
+- name: create file/dir aliases symlink
+  file: src={{ playbook_dir }}/roles/tmux/files/tmux.sh  dest=~/.bash.d/tmux.sh state=link
