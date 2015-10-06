@@ -9,3 +9,6 @@
 - name: install lxd
   apt:  name=lxd force=yes state=latest
   sudo: yes
+
+- name: create lxd aliases symlink
+  file: src={{ playbook_dir }}/roles/lxd/files/lxd.sh  dest=~/.bash.d/lxd.sh state=link
