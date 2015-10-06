@@ -21,9 +21,11 @@ localhost | success >> {
 Test run the provisioning.
 ```bash
 $ make dryrun
+$ source ~/.bashrc
 ```
 
 Run the provisioning.
 ```bash
 $ make install
+$ source ~/.bashrc
 ```

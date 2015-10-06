@@ -1,0 +1,17 @@
+---
+# tasks file for bash
+
+- name: install bash
+  action: "{{ ansible_pkg_mgr }} name=bash state=present"
+
+- name: create $HOME/.bashrc symlink
+  file: src={{ playbook_dir }}/roles/bash/files/.bashrc  dest=~/.bashrc state=link force=yes
+
+- name: create $HOME/.bashd.d directory
+  file: path=~/.bash.d state=directory
+
+- name: create $HOME/.bashrc.load symlink
+  file: src={{ playbook_dir }}/roles/bash/files/.bashrc.load  dest=~/.bashrc.load state=link
+
+- name: create file/dir aliases symlink
+  file: src={{ playbook_dir }}/roles/bash/files/filedir.sh  dest=~/.bash.d/filedir.sh state=link
