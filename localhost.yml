@@ -3,6 +3,7 @@
   roles:
     - common
     - bash
+    - pkg
     - git
     - z
     - tmux

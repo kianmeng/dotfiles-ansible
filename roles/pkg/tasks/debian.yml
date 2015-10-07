@@ -1,0 +1,13 @@
+---
+# tasks file for apt
+# see http://docs.ansible.com/ansible/apt_module.html
+#
+- name: install apt-file
+  apt: name=apt-file state=present
+
+- name: update apt-file db
+  shell: apt-file update
+  sudo: yes
+
+- name: create apt symlink
+  file: src={{ playbook_dir }}/roles/pkg/files/apt.sh dest=~/.bash.d/apt.sh state=link
