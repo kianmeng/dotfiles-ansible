@@ -5,4 +5,7 @@
   action: "{{ ansible_pkg_mgr }} name=git state=present"
 
 - name: create symlink
-  file: src={{ playbook_dir }}/roles/git/files/.gitconfig  dest=~/.gitconfig state=link
+  file: src={{ playbook_dir }}/roles/git/files/.gitconfig dest=~/.gitconfig state=link
+
+- name: create git aliases symlink
+  file: src={{ playbook_dir }}/roles/git/files/git.sh  dest=~/.bash.d/git.sh state=link
