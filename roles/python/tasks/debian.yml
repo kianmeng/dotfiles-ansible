@@ -1,0 +1,9 @@
+---
+# tasks file for python - debian
+
+- name: install python and related packages
+  sudo: yes
+  apt: pkg={{item}} state=present
+  with_items:
+    - python-pip
+    - libpython-dev

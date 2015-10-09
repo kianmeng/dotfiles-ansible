@@ -1,0 +1,11 @@
+---
+# tasks file for python
+
+- include: debian.yml
+  when: ansible_os_family == "Debian"
+
+- include: redhat.yml
+  when: ansible_os_family == "RedHat"
+
+- name: create symlink
+  file: src={{ playbook_dir }}/roles/python/files/.pythonstartup dest=~/.pythonstartup state=link force=yes
