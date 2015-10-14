@@ -2,24 +2,23 @@
 # @see http://elixir-lang.org/install.html#unix-and-unix-like
 # @see http://chaosmail.github.io/programming/2015/03/04/install-deb-packages-in-ansible/
 
-- name: check if Elixir repo exists
+- name: check if elixir repo exists
   command: dpkg-query -W elixir
   register: elixir_deb
   failed_when: elixir_deb.rc > 1
   changed_when: elixir_deb.rc == 1
 
-- name: download Elixir repo deb file
+- name: download elixir repo deb file
   get_url: >
       url=https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb 
       dest="/home/{{ ansible_env.USER }}/Downloads/erlang-solutions_1.0_all.deb"
   when: elixir_deb.rc == 1
 
-- name: install Elixir repo deb file
+- name: install elixir repo deb file
   apt:  deb="/home/{{ ansible_env.USER }}/Downloads/erlang-solutions_1.0_all.deb"
   sudo: yes
   when: elixir_deb.rc == 1
 
-- name: install Elixir
+- name: install elixir
   apt:  name=elixir force=yes update_cache=yes state=latest
   sudo: yes
-
