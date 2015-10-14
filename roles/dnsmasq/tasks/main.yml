@@ -1,0 +1,17 @@
+---
+# tasks file for dnsmasq
+# @see http://docs.ansible.com/ansible/service_module.html
+# @see http://askubuntu.com/a/233224
+# @see https://icann.org/namecollision
+
+- name: add .dev tld to dnsmasq
+  sudo: yes
+  lineinfile: 
+    line: address=/dev/127.0.0.1
+    create: yes
+    state: present
+    dest: /etc/NetworkManager/dnsmasq.d/tld.dev
+
+- name: restart network-manager
+  sudo: yes
+  service: name=network-manager state=restarted
