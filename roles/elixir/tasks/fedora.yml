@@ -1,0 +1,5 @@
+---
+
+- name: install elixir
+  yum: name=elixir state=latest update_cache=yes
+  sudo: yes 
