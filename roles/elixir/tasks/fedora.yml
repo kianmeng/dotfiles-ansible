@@ -1,5 +1,5 @@
 ---
 
 - name: install elixir
-  yum: name=elixir state=latest update_cache=yes
+  action: "{{ ansible_pkg_mgr }} name=elixir state=present"
   sudo: yes 

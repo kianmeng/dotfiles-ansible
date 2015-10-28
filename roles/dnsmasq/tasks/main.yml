@@ -15,3 +15,9 @@
 - name: restart network-manager
   sudo: yes
   service: name=network-manager state=restarted
+  when: ansible_os_family == "Debian"
+
+- name: restart network-manager
+  sudo: yes
+  service: name=NetworkManager state=restarted
+  when: ansible_os_family == "RedHat"

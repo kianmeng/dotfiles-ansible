@@ -8,6 +8,16 @@
       - pylint
       - php-pear
       - exuberant-ctags
+  when: ansible_os_family == "Debian"
+
+- name: install vim and related packages
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{item}} state=present"
+  with_items:
+      - pylint
+      - php-pear
+      - ctags
+  when: ansible_distribution == "Fedora"
 
 - name: create symlink
   file: src={{ playbook_dir }}/roles/vim/files/.vimrc  dest=~/.vimrc state=link

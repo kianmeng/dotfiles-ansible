@@ -1,2 +1,2 @@
-. /etc/bash.bashrc
+#. /etc/bash.bashrc
 . $HOME/.bashrc.load
