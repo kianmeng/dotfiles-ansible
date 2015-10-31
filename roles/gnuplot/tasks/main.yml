@@ -1,0 +1,5 @@
+---
+# tasks file for gnuplot
+
+- name: install gnuplot
+  action: "{{ ansible_pkg_mgr }} name=gnuplot state=present"
