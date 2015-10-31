@@ -1,0 +1,6 @@
+---
+# tasks file for rrd
+
+- name: install rrd
+  action: "{{ ansible_pkg_mgr }} name=rrdtool state=present"
+
