@@ -8,3 +8,5 @@
     - python-virtualenv 
     - python-virtualenvwrapper
     - python-flake8
+    - python-matplotlib 
+    - numpy
