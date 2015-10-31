@@ -1,0 +1,23 @@
+---
+# tasks file for roles/fonts
+
+- name: install fonts (fedora)
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{item}} state=present"
+  with_items:
+      - dejavu-sans-fonts
+      - dejavu-sans-mono-fonts
+      - dejavu-serif-fonts
+      - google-noto-color-emoji-fonts
+      - google-noto-sans-cjk-fonts
+      - google-noto-sans-fonts
+      - google-noto-sans-symbols-fonts
+      - google-noto-sans-simplified-chinese-fonts
+      - google-noto-sans-traditional-chinese-fonts
+      - google-noto-serif-fonts
+      - google-roboto-condensed-fonts
+      - google-roboto-fonts
+      - google-roboto-mono-fonts
+      - google-roboto-slab-fonts
+      - liberation-fonts
+  when: ansible_distribution == "Fedora"
