@@ -1,0 +1,12 @@
+---
+# tasks file for pdf
+
+- name: install pdf-related packages
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{item}} state=present"
+  with_items:
+    - poppler-cpp # pdfgrep
+    - python-pdfminer #pdf2txt
+    - pdf-tools
+    - podofo
+  when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 23
