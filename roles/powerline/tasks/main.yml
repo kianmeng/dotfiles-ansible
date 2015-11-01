@@ -1,0 +1,25 @@
+---
+# tasks file for powerline
+# @see http://fedoramagazine.org/add-power-terminal-powerline/
+
+- name: install powerline (fedora)
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+      - powerline
+      - tmux-powerline
+  when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 23
+
+- name: enable powerline for bash
+  file: >
+      src={{ playbook_dir }}/roles/powerline/files/powerline.sh 
+      dest=/home/{{ ansible_ssh_user }}/.bash.d/powerline.sh 
+      state=link
+
+- name: enable powerline for tmux
+  lineinfile: >
+      dest=/home/{{ ansible_ssh_user }}/.tmux.conf
+      line="source '/usr/share/tmux/powerline.conf'"
+      regexp="powerline.conf$"
+      state=present
+      insertafter=EOF
