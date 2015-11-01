@@ -1,0 +1,15 @@
+---
+# tasks file for powertop
+# @see http://superuser.com/a/877796
+# @see https://technet.microsoft.com/en-us/library/ee156537.aspx
+
+- name: detect machine chassis type
+  shell: dmidecode --string chassis-type
+  register: chassis_type
+
+# todo: test this in others gnu/linux distros
+# - debug: var=chassis_type
+
+- name: install powertop
+  action: "{{ ansible_pkg_mgr }} name=powertop state=present"
+  when: chassis_type.stdout|lower == 'notebook'
