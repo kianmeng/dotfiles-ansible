@@ -1,0 +1,21 @@
+---
+# tasks file for neovim
+# @see https://github.com/neovim/neovim/wiki/Installing-Neovim
+# @see https://copr.fedoraproject.org/coprs/dperson/neovim/
+# @see https://github.com/neovim/neovim/issues/3469
+
+- name: enable neovim repository (fedora)
+  sudo: yes
+  command: dnf copr enable dperson/neovim -y
+  when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
+
+- name: install neovim (fedora)
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name=neovim state=present"
+  when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
+
+- name: .vim to .config/nvim symlink
+  file: src=/home/{{ ansible_env.USER }}/.vim  dest=/home/{{ ansible_env.USER }}/.config/nvim state=link force=yes
+
+- name: .vimrc to .config/nvim/init.vim symlink
+  file: src=/home/{{ ansible_env.USER }}/.vimrc  dest=/home/{{ ansible_env.USER }}/.config/nvim/init.vim state=link force=yes
