@@ -3,6 +3,7 @@
 # @see https://github.com/neovim/neovim/wiki/Installing-Neovim
 # @see https://copr.fedoraproject.org/coprs/dperson/neovim/
 # @see https://github.com/neovim/neovim/issues/3469
+# @see https://neovim.io/doc/user/nvim_python.html
 
 - name: enable neovim repository (fedora)
   sudo: yes
@@ -11,7 +12,19 @@
 
 - name: install neovim (fedora)
   sudo: yes
-  action: "{{ ansible_pkg_mgr }} name=neovim state=present"
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+      - python2-devel
+      - python3-devel
+      - neovim
+  when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
+
+- name: install nvim_python
+  sudo: yes
+  pip: name=neovim executable={{ item }}
+  with_items:
+      - pip2
+      - pip3
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
 
 - name: .vim to .config/nvim symlink
@@ -19,3 +32,4 @@
 
 - name: .vimrc to .config/nvim/init.vim symlink
   file: src=/home/{{ ansible_env.USER }}/.vimrc  dest=/home/{{ ansible_env.USER }}/.config/nvim/init.vim state=link force=yes
+
