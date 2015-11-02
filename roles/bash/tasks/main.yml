@@ -2,6 +2,7 @@
 # tasks file for bash
 
 - name: install bash
+  sudo: yes
   action: "{{ ansible_pkg_mgr }} name=bash state=present"
 
 - name: create $HOME/.bashrc symlink

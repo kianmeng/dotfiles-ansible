@@ -2,6 +2,7 @@
 # tasks file for git
 
 - name: install git
+  sudo: yes
   action: "{{ ansible_pkg_mgr }} name=git state=present"
 
 - name: create symlink
