@@ -6,3 +6,10 @@
 
 - include: redhat.yml
   when: ansible_os_family == "RedHat"
+
+- name: install sensible utilities
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name=sensible-utils state=present"
+
+- name: create symlink
+  file: src={{ playbook_dir }}/roles/chrome/files/chrome.sh dest=~/.bash.d/chrome.sh state=link

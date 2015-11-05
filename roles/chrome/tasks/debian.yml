@@ -35,6 +35,3 @@
   apt: name=google-chrome-stable state=present update_cache=yes
   when: chrome_exists.rc == 1
   sudo: yes
-
-- name: create symlink
-  file: src={{ playbook_dir }}/roles/chrome/files/chrome.sh dest=~/.bash.d/chrome.sh state=link

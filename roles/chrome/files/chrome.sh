@@ -1,3 +1,6 @@
+# Fedora doesn't seems to set this value by default
+export BROWSER=google-chrome
+
 # search Google from command line
 # gg term1 term2 termN
 # @see http://superuser.com/a/47216
