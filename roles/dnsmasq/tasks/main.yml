@@ -21,3 +21,6 @@
   sudo: yes
   service: name=NetworkManager state=restarted
   when: ansible_os_family == "RedHat"
+
+- name: wait for network-manager to complete restart
+  pause: seconds=10
