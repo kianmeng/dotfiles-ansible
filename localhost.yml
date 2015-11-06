@@ -6,12 +6,23 @@
     - pkg
     - git
     - z
+    - xclip
+    - fonts
+    - powertop
     - tmux
     - screen
-    - lxd
     - vim
-    - xclip
-    - chrome
-    - python
+    - neovim
+    - powerline
     - dnsmasq
+    - python
+    - php
     - elixir
+    - gnuplot
+    - pdf
+    - r
+    - rrd
+    - sphinx
+    - chrome
+    - multimedia
+    - lxd
