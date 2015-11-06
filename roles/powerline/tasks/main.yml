@@ -10,16 +10,27 @@
       - tmux-powerline
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 23
 
-- name: enable powerline for bash
+- name: enable powerline for bash (fedora)
   file: >
       src={{ playbook_dir }}/roles/powerline/files/powerline.sh 
       dest=/home/{{ ansible_ssh_user }}/.bash.d/powerline.sh 
       state=link
+  when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 23
 
-- name: enable powerline for tmux
+- name: enable powerline for tmux (fedora)
   lineinfile: >
       dest=/home/{{ ansible_ssh_user }}/.tmux.conf
       line="source '/usr/share/tmux/powerline.conf'"
       regexp="powerline.conf$"
       state=present
       insertafter=EOF
+  when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 23
+
+- name: install powerline (ubuntu)
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+      - fonts-powerline
+      - powerline
+      - python-powerline
+  when: ansible_distribution == "Ubuntu"
