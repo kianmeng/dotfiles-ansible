@@ -1,13 +1,6 @@
 ---
 # tasks file for z
 
-# msg: Aborting, target uses selinux but python bindings (libselinux-python)
-# aren't installed!
-- name: install libselinux-python
-  action: "{{ ansible_pkg_mgr }} name=libselinux-python state=present"
-  sudo: yes
-  when: ansible_distribution == "Fedora"
-
 - name: clone z repository 
   git: repo=https://github.com/rupa/z.git dest=/tmp/z
 

@@ -1,12 +1,13 @@
 ---
 # tasks file for common / fedora
-# see http://docs.ansible.com/ansible/dnf_module.html
-# see http://blog.oddbit.com/2015/10/15/bootstrapping-ansible-on-fedora-23/
+# @see http://docs.ansible.com/ansible/dnf_module.html
+# @see http://blog.oddbit.com/2015/10/15/bootstrapping-ansible-on-fedora-23/
+# @see https://fedoramagazine.org/getting-ansible-working-fedora-23/
 
+# --allowerasing allows us to downgrade the dnf library
 - name: install missing python / python-dnf package
-  # --allowerasing allows us to downgrade the dnf library
-  shell: dnf -y -e0 -d0 install python python-dnf --allowerasing
   sudo: yes
+  shell: dnf -y -e0 -d0 install python python-dnf libselinux-python --allowerasing
   when: ansible_distribution_version|int >= 23
 
 - name: dnf - upgrade all packages
