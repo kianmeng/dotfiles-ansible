@@ -1,5 +1,8 @@
 ---
 # tasks file for yum/dnf
+# @see http://docs.ansible.com/ansible/user_module.html
+# @see http://docs.ansible.com/ansible/group_module.html
+# @see http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
 
 - name: install yum-utils
   sudo: yes
@@ -10,3 +13,28 @@
 
 - name: create dnf symlink
   file: src={{ playbook_dir }}/roles/pkg/files/dnf.sh dest=~/.bash.d/dnf.sh state=link
+
+- name: install tools for building rpm package
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+      - '@development-tools'
+      - fedora-packager
+      - rpmdevtools
+      - python-passlib # for creating user
+
+- name: create makerpm group
+  sudo: yes
+  group: name=makerpm state=present
+  when: ansible_distribution == "Fedora"
+
+- name: create makerpm user
+  sudo: yes
+  user: name=makerpm groups=mock,makerpm password={{ makerpm_password_hash }} append=yes
+  when: ansible_distribution == "Fedora"
+
+- name: create rpm build directory structure
+  shell: rpmdev-setuptree
+  become: yes
+  become_user: makerpm
+  when: ansible_distribution == "Fedora"
