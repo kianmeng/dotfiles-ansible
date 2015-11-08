@@ -1,20 +1,16 @@
 ---
-# tasks file for yum/dnf
+# tasks file for redhat
 # @see http://docs.ansible.com/ansible/user_module.html
 # @see http://docs.ansible.com/ansible/group_module.html
 # @see http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
 
-- name: install yum-utils
-  sudo: yes
-  action: "{{ ansible_pkg_mgr }} name=yum-utils state=present"
+- include: redhat_yum.yml
+  when: ansible_pkg_mgr == "yum"
 
-- name: create yum symlink
-  file: src={{ playbook_dir }}/roles/pkg/files/yum.sh dest=~/.bash.d/yum.sh state=link
+- include: redhat_dnf.yml
+  when: ansible_pkg_mgr == "dnf"
 
-- name: create dnf symlink
-  file: src={{ playbook_dir }}/roles/pkg/files/dnf.sh dest=~/.bash.d/dnf.sh state=link
-
-- name: install tools for building rpm package
+- name: Install tools for building RPM package
   sudo: yes
   action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
   with_items:
@@ -23,18 +19,15 @@
       - rpmdevtools
       - python-passlib # for creating user
 
-- name: create makerpm group
+- name: Ensure makerpm group exists
   sudo: yes
   group: name=makerpm state=present
-  when: ansible_distribution == "Fedora"
 
-- name: create makerpm user
+- name: Ensure makerpm user exists
   sudo: yes
   user: name=makerpm groups=mock,makerpm password={{ makerpm_password_hash }} append=yes
-  when: ansible_distribution == "Fedora"
 
-- name: create rpm build directory structure
+- name: Ensure RPM build working directory exists
   shell: rpmdev-setuptree
   become: yes
   become_user: makerpm
-  when: ansible_distribution == "Fedora"
