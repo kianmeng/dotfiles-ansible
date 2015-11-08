@@ -1,0 +1,10 @@
+---
+# tasks file for Golang
+
+- name: Install Golang
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name=golang state=present"
+
+- name: Ensure GOPATH, GOPATH/bin, and some aliases exists for all user
+  sudo: yes
+  copy: src={{ playbook_dir }}/roles/golang/files/golang.sh dest=/etc/profile.d/golang.sh
