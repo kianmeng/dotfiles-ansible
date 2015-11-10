@@ -27,6 +27,7 @@
     - chrome
     - multimedia
     - lxd
+    - vagrant
 
   vars_prompt:
    - name: "makerpm_password_hash"
