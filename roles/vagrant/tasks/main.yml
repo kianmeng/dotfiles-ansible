@@ -1,16 +1,13 @@
 ---
 # tasks file for vagrant
 
-- name: Ensure vagrant and the relevant plugins exists
+- name: Ensure vagrant exists
   sudo: yes
-  action: "{{ ansible_pkg_mgr }} name={{item}} state=present"
-  with_items:
-      - vagrant
-      - vagrant-lxc
-      - vagrant-libvirt
-      - vagrant-cachier
-  when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
+  action: "{{ ansible_pkg_mgr }} name=vagrant state=present"
 
-- name: Ensure vagrant-vbguest plugin exists
-  shell: vagrant plugin install vagrant-vbguest
-  when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
+- name: Ensure vagrant plugins exists
+  shell: vagrant plugin install {{ item }}
+  with_items:
+    - vagrant-lxc
+    - vagrant-cachier
+    - vagrant-vbguest
