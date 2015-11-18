@@ -26,6 +26,7 @@
     - sphinx
     - chrome
     - multimedia
+    - lxc
     - lxd
     - vagrant
 
