@@ -1,0 +1,15 @@
+---
+# tasks file for lxc/fedora
+
+- name: Ensure LXC and lxcbr0 exists
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+    - lxc
+    - lxc-libs
+    - lxc-extra
+    - lxc-templates
+
+- name: Ensure lxcbr0 bridge interface is up
+  sudo: yes
+  service: name=lxc-net state=started
