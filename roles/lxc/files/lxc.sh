@@ -1,13 +1,13 @@
 # aliases for LXC
 
-lxcls='lxc-ls --fancy'
-lxclsr='lxcls --running'
-lxclsa='lxcls --active'
-lxclss='lxcls --stopped'
+alias lxcls='lxc-ls --fancy'
+alias lxclsr='lxcls --running'
+alias lxclsa='lxcls --active'
+alias lxclss='lxcls --stopped'
 
-lxcst='lxc-start -n'
-lxckill='lxc-stop -k -n'
-lxcreboot='lxc-stop -r -n'
+alias lxcst='lxc-start -n'
+alias lxckill='lxc-stop -k -n'
+alias lxcreboot='lxc-stop -r -n'
 
-lxclogin='lxc-console -n'
-lxcshell='lxc-attach -n'
+alias lxclog='lxc-console -n'
+alias lxcsh='lxc-attach -n'
