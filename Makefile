@@ -7,7 +7,7 @@ check:
 
 # Test run the privisioning and unified diffs of the templates files.
 dryrun:
-	ansible-playbook localhost.yml --check --diff --ask-sudo-pass
+	ansible-playbook localhost.yml --check --diff --ask-sudo-pass --tags core
 
 # Getting information about the host machine, which is localhost.
 facts:
