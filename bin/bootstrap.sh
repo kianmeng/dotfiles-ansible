@@ -22,17 +22,16 @@ function git_clone_and_ansible_ping() {
 function install_ansible_and_git() {
     if [[ $($DEFAULT_PYTHON -mplatform | grep -Ei 'ubuntu|debian') ]];
     then
-        sudo apt-add-repository -y ppa:ansible/ansible
-        sudo apt-get update
-        sudo apt-get install -y ansible git make
+        sudo apt-get install -y git make
     elif [[ $($DEFAULT_PYTHON -mplatform | grep -Ei 'fedora|centos') ]];
     then
         sudo yum install -y epel-release
-        sudo yum install -y ansible ansible-lint git make
+        sudo yum install -y git make
     else
         echo -e "Error: Only RPM-based or DEB-based GNU/Linux distros are supported."
         exit 1
     fi
+    sudo -H pip install setuptools ansible ansible-lint ansible-shell
 }
 
 install_ansible_and_git && git_clone_and_ansible_ping
