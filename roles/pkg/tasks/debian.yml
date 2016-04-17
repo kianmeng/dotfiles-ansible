@@ -4,6 +4,7 @@
 #
 - name: install apt-file
   apt: name=apt-file state=present
+  sudo: yes
 
 - name: update apt-file db
   shell: apt-file update
