@@ -2,32 +2,9 @@
 # tasks file for redhat
 # @see http://docs.ansible.com/ansible/user_module.html
 # @see http://docs.ansible.com/ansible/group_module.html
-# @see http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
 
 - include: redhat_yum.yml
   when: ansible_pkg_mgr == "yum"
 
 - include: redhat_dnf.yml
   when: ansible_pkg_mgr == "dnf"
-
-- name: Install tools for building RPM package
-  sudo: yes
-  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
-  with_items:
-      - '@development-tools'
-      - fedora-packager
-      - rpmdevtools
-      - python-passlib # for creating user
-
-- name: Ensure makerpm group exists
-  sudo: yes
-  group: name=makerpm state=present
-
-- name: Ensure makerpm user exists
-  sudo: yes
-  user: name=makerpm groups=mock,makerpm password={{ makerpm_password_hash }} append=yes
-
-- name: Ensure RPM build working directory exists
-  shell: rpmdev-setuptree
-  become: yes
-  become_user: makerpm
