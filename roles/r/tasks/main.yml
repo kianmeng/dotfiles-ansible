@@ -9,6 +9,13 @@
       - redhat-rpm-config
   when: ansible_distribution == "Fedora"
 
+- name: install R (ubuntu)
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{item}} state=present"
+  with_items:
+      - r-base-core 
+  when: ansible_distribution == "Ubuntu"
+
 - name: install R libraries
   sudo: yes
   command: Rscript -e 'if (!require("{{item}}")) install.packages("{{item}}", repos="http://cran.us.r-project.org")'
