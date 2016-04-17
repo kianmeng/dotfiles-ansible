@@ -9,12 +9,7 @@
 
 - name: install the z.sh man page
   sudo: yes
-  copy: src=/tmp/z/z.1 dest=/usr/local/man/man1/z.1
-  when: ansible_os_family == "Debian"
-
-- name: install the z.sh man page
-  sudo: yes
-  copy: src=/tmp/z/z.1 dest=/usr/local/share/man/man1/z.1
+  copy: src=/tmp/z/z.1 dest=/usr/share/man/man1/z.1
   when: ansible_os_family == "Debian"
 
 - name: clean up local repository
