@@ -9,7 +9,7 @@
 DEFAULT_PYTHON='python'
 [ -n $(command -v python) ] && DEFAULT_PYTHON='python3'
 
-DEFAULT_REPO_PATH="$HOME/Projects"
+DEFAULT_REPO_PATH="$HOME/src"
 
 function git_clone_and_ansible_ping() {
     mkdir $DEFAULT_REPO_PATH
