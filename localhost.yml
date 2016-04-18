@@ -12,6 +12,7 @@
     - { role: tmux, tags: 'core' }
     - { role: screen, tags: 'core' }
     - { role: vim, tags: 'core' }
+    - { role: emacs, tags: 'core' }
     - { role: neovim, tags: 'core' }
     - { role: powerline, tags: 'core' }
     - { role: dnsmasq, tags: 'core' }
