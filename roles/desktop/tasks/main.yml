@@ -1,0 +1,10 @@
+---
+# tasks file for desktop
+
+- name: install desktop tools
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+      - gparted
+      - meld
+      - shutter

@@ -26,6 +26,7 @@
     - { role: sphinx, tags: 'programming' }
     - { role: lxc, tags: 'programming' }
     - { role: lxd, tags: 'programming' }
+    - { role: desktop, tags: 'gui' }
     - { role: pdf, tags: 'gui' }
     - { role: chrome, tags: 'gui' }
     - { role: multimedia, tags: 'gui' }
