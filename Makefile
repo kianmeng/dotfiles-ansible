@@ -16,3 +16,8 @@ facts:
 # Privision the machine.
 install:
 	ansible-playbook localhost.yml --ask-sudo-pass 
+
+# @see http://stackoverflow.com/a/32490846
+# @see https://groups.google.com/d/msg/ansible-project/h-SGLuPDRrs/7iCfsItYod0J
+role:
+	ansible-playbook run_role.yml --ask-sudo-pass -e "ROLE=$(filter-out $@,$(MAKECMDGOALS))"

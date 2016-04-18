@@ -29,3 +29,8 @@ Run the provisioning.
 $ make install
 $ source ~/.bashrc
 ```
+
+To run individual role
+```bash
+$ make run monitoring
+```
