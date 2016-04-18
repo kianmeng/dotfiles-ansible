@@ -15,6 +15,7 @@
     - { role: neovim, tags: 'core' }
     - { role: powerline, tags: 'core' }
     - { role: dnsmasq, tags: 'core' }
+    - { role: monitoring, tags: 'core' }
     - { role: python, tags: 'programming' }
     - { role: php, tags: 'programming' }
     - { role: elixir, tags: 'programming' }
