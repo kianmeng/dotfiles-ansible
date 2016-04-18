@@ -11,7 +11,7 @@ shopt -s cmdhist               # Store multiline cmds as single
 export EDITOR=vi 
 
 # default project folder name.
-export PROJECT=$HOME/Projects
+export PROJECT=$HOME/src
 if [[ ! -d $PROJECT ]]; then
     mkdir $PROJECT
 fi
