@@ -15,7 +15,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " keybindings
-let mapleader = ","
+let mapleader = "\<Space>"
 imap jj <esc>
 nmap ; :
 noremap ;; ;
