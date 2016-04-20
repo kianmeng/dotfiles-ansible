@@ -4,7 +4,7 @@
     - { role: common, tags: 'core' }
     - { role: bash, tags: 'core' }
     - { role: pkg, tags: 'core' }
-    - { role: git, tags: 'core' }
+    - { role: vcs, tags: 'core' }
     - { role: z, tags: 'core' }
     - { role: xclip, tags: 'core' }
     - { role: fonts, tags: 'core' }

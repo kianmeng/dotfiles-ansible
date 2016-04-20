@@ -1,12 +1,16 @@
 ---
-# tasks file for git
+# tasks file for all version control system (vcs)
 
-- name: install git
+- name: install all vcs
   sudo: yes
-  action: "{{ ansible_pkg_mgr }} name=git state=present"
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+      - git
+      - mercurial
+      - subversion
 
 - name: create symlink
-  file: src={{ playbook_dir }}/roles/git/files/.gitconfig dest=~/.gitconfig state=link
+  file: src={{ playbook_dir }}/roles/vcs/files/.gitconfig dest=~/.gitconfig state=link
 
 - name: create git aliases symlink
-  file: src={{ playbook_dir }}/roles/git/files/git.sh  dest=~/.bash.d/git.sh state=link
+  file: src={{ playbook_dir }}/roles/vcs/files/git.sh  dest=~/.bash.d/git.sh state=link
