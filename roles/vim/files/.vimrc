@@ -38,7 +38,12 @@ nnoremap <leader>q :q<cr>
 " Save and quit
 nnoremap <leader>w :wq<cr>
 " Enter Visual mode
-nmap <Leader> v V
+nmap <leader> v V
+" Switch pane
+map <leader>o <C-w><C-w>
+" Resize pane
+nmap <leader>- <C-w>-
+map <leader>= <C-w>+
                      
 " supertab
 " @see https://github.com/ervandew/supertab
