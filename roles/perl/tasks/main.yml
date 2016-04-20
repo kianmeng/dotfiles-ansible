@@ -1,0 +1,16 @@
+---
+# tasks file for perl
+
+- name: install perl and its related packages
+  sudo: yes
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+      - perl
+      - cpanminus
+
+- name: install necessary perl packages
+  sudo: yes
+  cpanm: name={{ item }}
+  with_items:
+      - Perl::Critic 
+      - Data::Dumper::Simple
