@@ -31,6 +31,15 @@ imap jj <esc>
 nmap ; :
 noremap ;; ;
 
+" Save
+nnoremap <leader>s :w<cr>
+" Quit
+nnoremap <leader>q :q<cr>
+" Save and quit
+nnoremap <leader>w :wq<cr>
+" Enter Visual mode
+nmap <Leader> v V
+                     
 " supertab
 " @see https://github.com/ervandew/supertab
 " @see http://vim.wikia.com/wiki/Omni_completion_popup_menu
