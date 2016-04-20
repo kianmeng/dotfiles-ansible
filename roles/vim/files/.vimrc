@@ -132,6 +132,17 @@ Bundle 'scrooloose/syntastic.git'
 " overwrite by vim-flake8 plugin
 let g:syntastic_python_checkers = ['pylint', 'flake8']
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_perl_checkers = ['perl', 'podchecker']
+let g:syntastic_enable_perl_checker = 1
+let gLsyntastic_debug = 1
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" add you own app's lib path
+" let g:syntastic_perl_lib_path = ['']
 
 Bundle 'taglist.vim'
 " taglist
