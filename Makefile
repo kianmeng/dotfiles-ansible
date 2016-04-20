@@ -15,7 +15,7 @@ facts:
 
 # Privision the machine.
 install:
-	ansible-playbook localhost.yml --ask-sudo-pass 
+	ansible-playbook localhost.yml --ask-sudo-pass --tags core
 
 # @see http://stackoverflow.com/a/32490846
 # @see https://groups.google.com/d/msg/ansible-project/h-SGLuPDRrs/7iCfsItYod0J
