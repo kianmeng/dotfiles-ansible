@@ -178,9 +178,18 @@ nmap <leader>nn :NERDTreeToggle<CR>
 " @see https://github.com/bling/vim-airline
 " @see https://powerline.readthedocs.org/en/latest/installation/linux.html#font-installation
 "
-Bundle 'bling/vim-airline'
+Bundle 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 "set guifont=Ubuntu\ Mono\ 12
+" unicode 2551
+let g:airline_left_sep='║'
+let g:airline_right_sep='║'
+let g:taboo_tab_format = '(%N) %a %m'
+let g:taboo_close_tabs_label = "X"
+let g:taboo_tabline = 0
+let g:airline#extensions#tabline#enabled = 1
+
 set ruler
 set nocompatible   " Disable vi-compatibility
 set laststatus=2   " Always show the statusline
@@ -321,7 +330,7 @@ Bundle 'pbrisbin/vim-mkdir'
 " Fuzzy file, buffer, mru, tag, etc finder.
 " @see https://github.com/kien/ctrlp.vim
 Bundle 'kien/ctrlp.vim'
-nmap <leader>f :CtrlP<CR>
+nmap <leader>e :CtrlP<CR>
 " ----
 
 " ----
