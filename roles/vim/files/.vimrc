@@ -14,8 +14,19 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" keybindings
-let mapleader = "\<Space>"
+" Global Key Bindings
+
+" If you set the leader key as <Space>, there is a delay when pressing <Space>
+" in Insert mode. These two lines are needed if you want to prevent that.
+" @see https://redd.it/1vdrxg
+" @see https://redd.it/2d2za5
+" @see http://superuser.com/a/693644
+nnoremap <space> <nop>
+noremap <space> <nop>
+let mapleader = ","
+nmap <space> <leader>
+
+" Save your left/right pinky.
 imap jj <esc>
 nmap ; :
 noremap ;; ;
