@@ -247,6 +247,7 @@ set wildmode=list:longest,full
 " omni complete
 set omnifunc=syntaxcomplete#Complete
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType perl set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -257,7 +258,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-" misc settings
+" Status bar
 set number
 set showcmd
 " prevent cursor stuck at top or bottom
