@@ -44,7 +44,104 @@ map <leader>o <C-w><C-w>
 " Resize pane
 nmap <leader>- <C-w>-
 map <leader>= <C-w>+
-                     
+
+" syntax & color scheme
+syntax on
+filetype plugin indent on
+
+" color scheme
+colorscheme default
+
+" wild menu. more options shown in command mode
+set wildmenu
+set wildmode=list:longest,full
+
+" omni complete
+set omnifunc=syntaxcomplete#Complete
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType perl set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+" tab settings 
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" Status bar
+set number
+set showcmd
+" prevent cursor stuck at top or bottom
+" @see https://news.ycombinator.com/item?id=9574469
+set scrolloff=6
+
+" ignore case when in ex (command) mode
+" @see http://stackoverflow.com/a/10308100
+set ignorecase
+set smartcase
+
+" search
+set incsearch 
+set hlsearch
+
+" block the usage of arrow keys
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" tab management
+" @see https://news.ycombinator.com/item?id=9574678
+nnoremap U :tabprevious<CR>
+nnoremap I :tabnext<CR>
+nnoremap N :tabnew<CR>
+nnoremap E :tabedit
+
+" sudo write
+" just type :w!! when edit file that need root privileges
+ca w!! w !sudo tee >/dev/null "%"
+
+" switch between paste and no paste mode fast and go into insert mode after
+" that
+" @see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste
+nnoremap <leader>p :set invpaste paste?<CR>
+set pastetoggle=<leader>p
+set showmode
+
+" Last file position
+" @see http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
+"
+" Tell vim to remember certain things when we exit
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+set viminfo='10,\"100,:20,%,n~/.viminfo
+
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
+
+" flying is faster than cycling
+" @see http://of-vim-and-vigor.blogspot.com/p/vim-vigor-comic.html
+nnoremap <leader>l :ls<CR>:b<space>
+
+" auto reload ~/.vimrc file upon saving
+" disable this as it freeze vim and make vim powerline looses color
+" @see http://vim.wikia.com/wiki/Change_vimrc_with_auto_reload
+" autocmd BufWritePost .vimrc source %
+
 " supertab
 " @see https://github.com/ervandew/supertab
 " @see http://vim.wikia.com/wiki/Omni_completion_popup_menu
@@ -238,102 +335,12 @@ Bundle 'git://drupalcode.org/project/vimrc.git', {'rtp': 'bundle/vim-plugin-for-
 Bundle 'ConradIrwin/vim-bracketed-paste'
 " ----
 
-" syntax & color scheme
-syntax on
-filetype plugin indent on
-
-" color scheme
-colorscheme default
-
-" wild menu. more options shown in command mode
-set wildmenu
-set wildmode=list:longest,full
-
-" omni complete
-set omnifunc=syntaxcomplete#Complete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType perl set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-" tab settings 
-set smartindent
-set tabstop=4
-set shiftwidth=4
-set expandtab
-
-" Status bar
-set number
-set showcmd
-" prevent cursor stuck at top or bottom
-" @see https://news.ycombinator.com/item?id=9574469
-set scrolloff=6
-
-" ignore case when in ex (command) mode
-" @see http://stackoverflow.com/a/10308100
-set ignorecase
-set smartcase
-
-" search
-set incsearch 
-set hlsearch
-
-" block the usage of arrow keys
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
-
-" tab management
-" @see https://news.ycombinator.com/item?id=9574678
-nnoremap U :tabprevious<CR>
-nnoremap I :tabnext<CR>
-nnoremap N :tabnew<CR>
-nnoremap E :tabedit
-
-" sudo write
-" just type :w!! when edit file that need root privileges
-ca w!! w !sudo tee >/dev/null "%"
-
-" switch between paste and no paste mode fast and go into insert mode after
-" that
-" @see http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste
-nnoremap <leader>p :set invpaste paste?<CR>
-set pastetoggle=<leader>p
-set showmode
-
-" Last file position
-" @see http://vim.wikia.com/wiki/Restore_cursor_to_file_position_in_previous_editing_session
-"
-" Tell vim to remember certain things when we exit
-"  '10  :  marks will be remembered for up to 10 previously edited files
-"  "100 :  will save up to 100 lines for each register
-"  :20  :  up to 20 lines of command-line history will be remembered
-"  %    :  saves and restores the buffer list
-"  n... :  where to save the viminfo files
-set viminfo='10,\"100,:20,%,n~/.viminfo
-
-function! ResCur()
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
-
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call ResCur()
-augroup END
-
-" flying is faster than cycling
-" @see http://of-vim-and-vigor.blogspot.com/p/vim-vigor-comic.html
-nnoremap <leader>l :ls<CR>:b<space>
-
-" auto reload ~/.vimrc file upon saving
-" disable this as it freeze vim and make vim powerline looses color
-" @see http://vim.wikia.com/wiki/Change_vimrc_with_auto_reload
-" autocmd BufWritePost .vimrc source %
+" ----
+" Easy Motion
+Bundle 'easymotion/vim-easymotion'
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+" ----
 
 " auto install Vunde if not found, for fresh install.
 " @see http://erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
