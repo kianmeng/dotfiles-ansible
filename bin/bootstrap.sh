@@ -22,7 +22,7 @@ function git_clone_and_ansible_ping() {
 function install_ansible_and_git() {
     if [[ $($DEFAULT_PYTHON -mplatform | grep -Ei 'ubuntu|debian') ]];
     then
-        sudo apt-get install -y git make
+        sudo apt-get install -y git make python-pip
     elif [[ $($DEFAULT_PYTHON -mplatform | grep -Ei 'fedora|centos') ]];
     then
         sudo yum install -y epel-release
