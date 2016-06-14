@@ -1,0 +1,12 @@
+# run docker without sudo right
+
+- name: add the 'docker' group
+  become: yes
+  group: name=docker state=present
+
+- name: add user to the 'docker' group
+  user: name={{ ansible_user }} groups=docker append=yes
+
+- name: restart the docker daemon
+  become: yes
+  service: name=docker state=restarted
