@@ -2,15 +2,19 @@
 # tasks file for perl
 
 - name: install perl and its related packages
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
   with_items:
       - perl
       - cpanminus
 
 - name: install necessary perl packages
-  sudo: yes
+  become: yes
   cpanm: name={{ item }}
   with_items:
-      - Perl::Critic 
+      - Perl::Critic
       - Data::Dumper::Simple
+      - Pod::Text::Color
+
+- name: create perl aliases symlink
+  file: src={{ playbook_dir }}/roles/perl/files/perl.sh  dest=~/.bash.d/perl.sh state=link
