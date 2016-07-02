@@ -4,7 +4,7 @@
 # @see https://technet.microsoft.com/en-us/library/ee156537.aspx
 
 - name: detect machine chassis type
-  sudo: yes
+  become: yes
   shell: dmidecode --string chassis-type
   register: chassis_type
 
@@ -12,6 +12,19 @@
 # - debug: var=chassis_type
 
 - name: install powertop
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name=powertop state=present"
+  when: chassis_type.stdout|lower == 'notebook'
+
+- name: install tlp
+  become: yes
+  action: "{{ ansible_pkg_mgr }} name={{item}} state=present"
+  with_items:
+    - tlp
+    - tlp-rdw
+  when: chassis_type.stdout|lower == 'notebook'
+
+- name: start tlp
+  become: yes
+  shell: tlp start
   when: chassis_type.stdout|lower == 'notebook'

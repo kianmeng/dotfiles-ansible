@@ -8,7 +8,7 @@
     - { role: z, tags: 'core' }
     - { role: xclip, tags: 'core' }
     - { role: fonts, tags: 'core' }
-    - { role: powertop, tags: 'core' }
+    - { role: battery, tags: 'core' }
     - { role: tmux, tags: 'core' }
     - { role: screen, tags: 'core' }
     - { role: vim, tags: 'core' }
