@@ -46,7 +46,7 @@
     ll = log --oneline --decorate --graph --all
     lla = log --oneline --decorate --graph -n 15 --all
     stat-by-author = shortlog -sn
-    
+
     # opss, undo
     reword = commit --amend
     unstage = reset HEAD --
@@ -79,10 +79,13 @@
 
     # git config --global core.askpass ''
     # see http://positon.org/disable-ssh-askpass-in-git-push
-    askpass = 
+    askpass =
 
 [merge]
     tool = meld
 
 [branch]
     autosetuprebase = always
+[push]
+    # push only current branch that you git pull off
+	default = simple
