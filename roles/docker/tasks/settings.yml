@@ -1,0 +1,5 @@
+# settings
+
+- name: create docker aliases
+  become: yes
+  copy: src={{ playbook_dir }}/roles/docker/files/docker.sh dest=/etc/profile.d/docker.sh

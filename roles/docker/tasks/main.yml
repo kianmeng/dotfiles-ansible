@@ -3,3 +3,4 @@
 
 - include: install.yml
 - include: without_sudo.yml
+- include: settings.yml
