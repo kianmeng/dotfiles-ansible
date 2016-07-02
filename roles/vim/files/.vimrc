@@ -351,6 +351,13 @@ map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 " ----
 
+" ----
+" Easy Motion
+Bundle 'pjcj/vim-hl-var'
+let g:hlvarhl="ctermbg=black ctermfg=red guifg=#ff0000 guibg=#000000 gui=bold"
+set updatetime=500
+" ----
+
 " auto install Vunde if not found, for fresh install.
 " @see http://erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 if iCanHazVundle == 1
