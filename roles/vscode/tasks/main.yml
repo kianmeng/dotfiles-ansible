@@ -1,0 +1,48 @@
+---
+# tasks file for visual studio
+
+- name: check if vscode exists and what version available
+  command: code -v
+  register: vscode_version
+  ignore_errors: true
+
+- debug: var=vscode_version.stdout
+
+- name: check downloaded vscode version
+  shell: ls ~/Downloads/code* | tail -1 | grep -Po '(?<=(code_)).*(?=-)'
+  register: vscode_version_download
+  ignore_errors: true
+
+- debug: var=vscode_version_download.stdout
+
+- name: download vscode
+  get_url: url=https://go.microsoft.com/fwlink/?LinkID=760868 dest=~/Downloads/
+  when: vscode_version_download.stdout == ""
+
+- name: get vscode deb package full path
+  shell: ls ~/Downloads/code* | tail -1
+  register: vscode_deb
+  when: vscode_version_download.stdout != ""
+
+- debug: var=vscode_deb.stdout
+
+- name: install vscode
+  become: yes
+  apt: deb={{ vscode_deb.stdout }}
+  when: vscode_deb.stdout != "" and (vscode_version.stdout is not defined or vscode_version_download.stdout != vscode_version.stdout)
+
+- name: install extensions
+  command: code --install-extension {{ item }}
+  with_items:
+    - vscodevim.vim
+    - donjayamanne.python
+    - lukehoban.Go
+    - formulahendry.terminal
+    - PeterJausovec.vscode-docker
+    - codezombiech.gitignore
+
+- name: list extensions
+  command: code --list-extensions
+  register: vscode_extensions
+
+- debug: var=vscode_extensions.stdout_lines
