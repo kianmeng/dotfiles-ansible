@@ -89,3 +89,5 @@
 [push]
     # push only current branch that you git pull off
 	default = simple
+[credential]
+	helper = cache
