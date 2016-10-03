@@ -8,7 +8,7 @@
   when: ansible_os_family == "RedHat"
 
 - name: install sensible utilities
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name=sensible-utils state=present"
 
 - name: create symlink

@@ -1,12 +1,12 @@
 ---
 # tasks file for chrome
-# see https://www.google.com/linuxrepositories/
+# @see https://www.google.com/linuxrepositories/
 
-- name: add chrome repository
+- name: add repository
   command: cp {{ playbook_dir }}/roles/chrome/files/google-chrome.repo /etc/yum.repos.d/google-chrome.repo
-  sudo: yes
+  become: yes
+  changed_when: False
 
-- name: install google chrome stable
+- name: install chrome stable
   action: "{{ ansible_pkg_mgr }} name=google-chrome-stable state=present"
-  sudo: yes
-
+  become: yes
