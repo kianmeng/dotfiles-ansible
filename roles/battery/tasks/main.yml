@@ -1,7 +1,8 @@
 ---
-# tasks file for powertop
+# tasks file for laptop battery related changes
 # @see http://superuser.com/a/877796
 # @see https://technet.microsoft.com/en-us/library/ee156537.aspx
+# @see http://stackoverflow.com/a/29156354
 
 - name: detect machine chassis type
   become: yes
@@ -9,13 +10,28 @@
   register: chassis_type
   changed_when: False
 
+- name: detect laptop brand
+  become: yes
+  shell: dmidecode | grep -A3 '^System Information' | grep Version
+  register: laptop_model
+  when: chassis_type.stdout|lower == 'notebook'
+
 # todo: test this in others gnu/linux distros
 # - debug: var=chassis_type
+# - debug: var=laptop_model
 
 - name: install powertop
   become: yes
   action: "{{ ansible_pkg_mgr }} name=powertop state=present"
   when: chassis_type.stdout|lower == 'notebook'
+
+- name: install thinkpad kernel module
+  become: yes
+  action: "{{ ansible_pkg_mgr }} name={{item}} state=present"
+  with_items:
+    - tp-smapi-dkms
+    - acpi-call
+  when: laptop_model.stdout.find('ThinkPad') > 0
 
 - name: install tlp
   become: yes
