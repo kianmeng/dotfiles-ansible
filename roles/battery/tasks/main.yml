@@ -5,8 +5,9 @@
 
 - name: detect machine chassis type
   become: yes
-  shell: dmidecode --string chassis-type
+  command: dmidecode --string chassis-type
   register: chassis_type
+  changed_when: False
 
 # todo: test this in others gnu/linux distros
 # - debug: var=chassis_type
@@ -26,5 +27,5 @@
 
 - name: start tlp
   become: yes
-  shell: tlp start
+  service: name=tlp state=restarted
   when: chassis_type.stdout|lower == 'notebook'
