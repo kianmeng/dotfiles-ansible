@@ -1,7 +1,7 @@
 ---
 # tasks file for common / redhat
-# see http://docs.ansible.com/ansible/yum_module.html
+# @see http://docs.ansible.com/ansible/yum_module.html
 
 - name: yum - upgrade all packages
-  yum: name=* state=latest update_cache=yes
-  sudo: yes
+  yum: name=* state=stable update_cache=yes
+  become: yes

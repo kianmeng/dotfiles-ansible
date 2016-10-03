@@ -6,10 +6,11 @@
 
 # --allowerasing allows us to downgrade the dnf library
 - name: install missing python / python-dnf package
-  sudo: yes
-  shell: dnf -y -e0 -d0 install python python-dnf libselinux-python --allowerasing
+  become: yes
+  command: dnf -y -e0 -d0 install python python-dnf libselinux-python --allowerasing
   when: ansible_distribution_version|int >= 23
+  changed_when: False
 
 - name: dnf - upgrade all packages
-  dnf: name=* state=latest
-  sudo: yes
+  dnf: name=* state=stable
+  become: yes
