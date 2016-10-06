@@ -3,7 +3,7 @@
 
 - name: install tmux
   action: "{{ ansible_pkg_mgr }} name=tmux state=present"
-  sudo: yes
+  become: yes
 
 - name: create symlink
   file: src={{ playbook_dir }}/roles/tmux/files/.tmux.conf  dest=~/.tmux.conf state=link

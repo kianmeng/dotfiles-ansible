@@ -5,6 +5,7 @@
   command: code -v
   register: vscode_version
   ignore_errors: true
+  when: false
 
 - debug: var=vscode_version.stdout
 
@@ -12,6 +13,7 @@
   shell: ls ~/Downloads/code* | tail -1 | grep -Po '(?<=(code_)).*(?=-)'
   register: vscode_version_download
   ignore_errors: true
+  when: false
 
 - debug: var=vscode_version_download.stdout
 
@@ -33,6 +35,7 @@
 
 - name: install extensions
   command: code --install-extension {{ item }}
+  when: false
   with_items:
     - vscodevim.vim
     - donjayamanne.python
@@ -43,6 +46,7 @@
 
 - name: list extensions
   command: code --list-extensions
+  when: false
   register: vscode_extensions
 
 - debug: var=vscode_extensions.stdout_lines

@@ -3,35 +3,35 @@
 # @see http://rpmfusion.org/FAQ
 
 - name: enable rpmfusion repositories
-  sudo: yes
+  become: yes
   dnf: name={{ item }} state=present
   with_items:
-    - http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm 
+    - http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm
     - http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
 
 - name: upgrade all packages
-  sudo: yes
-  dnf: name=* state=latest
+  become: yes
+  dnf: name=* state=stable
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
 
 - name: install multimedia apps (fedora)
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
   with_items:
       - vlc
       - ffmpeg
       - gstreamer-ffmpeg
-      - gstreamer-plugins-good 
-      - gstreamer-plugins-bad 
-      - gstreamer-plugins-ugly 
-      - gstreamer1-plugins-ugly 
+      - gstreamer-plugins-good
+      - gstreamer-plugins-bad
+      - gstreamer-plugins-ugly
+      - gstreamer1-plugins-ugly
       - gstreamer1-libav
       - youtube-dl
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
 
 - name: enable multimedia aliases for bash
   file: >
-      src={{ playbook_dir }}/roles/multimedia/files/multimedia.sh 
-      dest=~/.bash.d/multimedia.sh 
+      src={{ playbook_dir }}/roles/multimedia/files/multimedia.sh
+      dest=~/.bash.d/multimedia.sh
       state=link

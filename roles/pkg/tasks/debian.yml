@@ -3,12 +3,13 @@
 # see http://docs.ansible.com/ansible/apt_module.html
 #
 - name: install apt-file
+  become: yes
   apt: name=apt-file state=present
-  sudo: yes
 
 - name: update apt-file db
-  shell: apt-file update
-  sudo: yes
+  become: yes
+  command: apt-file update
+  when: false
 
 - name: create apt symlink
   file: src={{ playbook_dir }}/roles/pkg/files/apt.sh dest=~/.bash.d/apt.sh state=link

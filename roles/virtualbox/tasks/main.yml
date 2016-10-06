@@ -2,14 +2,14 @@
 # tasks file for virtualbox
 
 - name: Download VirtualBox Fedora repo file
-  sudo: yes
+  become: yes
   get_url: >
-      url=http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo 
+      url=http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
       dest=/etc/yum.repos.d/virtualbox.repo
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
 
 - name: Ensure VirtualBox exists
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name={{item}} state=present"
   with_items:
       - VirtualBox-5.0
@@ -19,6 +19,6 @@
 
   # @see http://www.webupd8.org/2015/10/workaround-for-sbinvboxconfig-not.html
 - name: Ensure VirtualBox kernel module exists
-  sudo: yes
-  shell: sudo /sbin/rcvboxdrv setup
+  become: yes
+  command: sudo /sbin/rcvboxdrv setup
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22

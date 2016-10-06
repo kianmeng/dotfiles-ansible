@@ -2,6 +2,6 @@
 # tasks file for redhat / dnf
 
 - name: Ensure DNF aliases available for all users
-  sudo: yes
+  become: yes
   copy: src={{ playbook_dir }}/roles/pkg/files/dnf.sh dest=/etc/profile.d/dnf.sh
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22

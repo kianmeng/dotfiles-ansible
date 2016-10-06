@@ -4,11 +4,11 @@
 
 - name: add lxd ppa
   apt_repository: repo='ppa:ubuntu-lxc/lxd-stable' state=present update_cache=yes
-  sudo: yes
+  become: yes
 
 - name: install lxd
-  apt:  name=lxd force=yes state=latest
-  sudo: yes
+  apt:  name=lxd force=yes state=stable
+  become: yes
 
 - name: create lxd aliases symlink
   file: src={{ playbook_dir }}/roles/lxd/files/lxd.sh  dest=~/.bash.d/lxd.sh state=link

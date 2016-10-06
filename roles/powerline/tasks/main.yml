@@ -3,7 +3,7 @@
 # @see http://fedoramagazine.org/add-power-terminal-powerline/
 
 - name: install powerline (fedora)
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
   with_items:
       - powerline
@@ -12,8 +12,8 @@
 
 - name: enable powerline for bash (fedora)
   file: >
-      src={{ playbook_dir }}/roles/powerline/files/powerline.sh 
-      dest=~/.bash.d/powerline.sh 
+      src={{ playbook_dir }}/roles/powerline/files/powerline.sh
+      dest=~/.bash.d/powerline.sh
       state=link
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 23
 
@@ -27,7 +27,7 @@
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 23
 
 - name: install powerline (ubuntu)
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
   with_items:
       - fonts-powerline

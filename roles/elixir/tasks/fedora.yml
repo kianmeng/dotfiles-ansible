@@ -2,4 +2,4 @@
 
 - name: install elixir
   action: "{{ ansible_pkg_mgr }} name=elixir state=present"
-  sudo: yes 
+  become: yes

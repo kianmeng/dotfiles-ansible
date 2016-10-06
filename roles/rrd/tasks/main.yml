@@ -2,6 +2,6 @@
 # tasks file for rrd
 
 - name: install rrd
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name=rrdtool state=present"
 

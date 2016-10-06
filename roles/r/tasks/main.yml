@@ -2,23 +2,24 @@
 # tasks file for r
 
 - name: install R (fedora)
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name={{item}} state=present"
   with_items:
-      - R-core 
+      - R-core
       - redhat-rpm-config
   when: ansible_distribution == "Fedora"
 
 - name: install R (ubuntu)
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name={{item}} state=present"
   with_items:
-      - r-base-core 
+      - r-base-core
   when: ansible_distribution == "Ubuntu"
 
 - name: install R libraries
-  sudo: yes
+  become: yes
+  when: false
   command: Rscript -e 'if (!require("{{item}}")) install.packages("{{item}}", repos="http://cran.us.r-project.org")'
   with_items:
       - ggplot2
-      - lubridate 
+      - lubridate

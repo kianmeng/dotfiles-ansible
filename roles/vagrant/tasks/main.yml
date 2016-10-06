@@ -2,11 +2,12 @@
 # tasks file for vagrant
 
 - name: Ensure vagrant exists
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name=vagrant state=present"
 
 - name: Ensure vagrant plugins exists
-  shell: vagrant plugin install {{ item }}
+  command: vagrant plugin install {{ item }}
+  when: false
   with_items:
     - vagrant-lxc
     - vagrant-cachier

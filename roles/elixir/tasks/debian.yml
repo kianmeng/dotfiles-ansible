@@ -10,15 +10,15 @@
 
 - name: download elixir repo deb file
   get_url: >
-      url=https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb 
+      url=https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
       dest="/home/{{ ansible_env.USER }}/Downloads/erlang-solutions_1.0_all.deb"
   when: elixir_deb.rc == 1
 
 - name: install elixir repo deb file
   apt:  deb="/home/{{ ansible_env.USER }}/Downloads/erlang-solutions_1.0_all.deb"
-  sudo: yes
+  become: yes
   when: elixir_deb.rc == 1
 
 - name: install elixir
   apt:  name=elixir force=yes update_cache=yes state=latest
-  sudo: yes
+  become: yes

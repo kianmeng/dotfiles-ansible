@@ -2,10 +2,10 @@
 # tasks file for emacs
 
 - name: install emacs
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
   with_items:
       - emacs
 
-- name: clone my own emacs dotfile 
-  git: repo=https://github.com/kianmeng/.emacs.d.git dest=~/.emacs.d update=yes
+- name: clone my own emacs dotfile
+  git: repo=https://github.com/kianmeng/.emacs.d.git dest=~/.emacs.d update=yes version=master

@@ -5,5 +5,5 @@
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
 
 - name: Ensure LXC aliases exists
-  sudo: yes
+  become: yes
   copy: src={{ playbook_dir }}/roles/lxd/files/lxd.sh dest=/etc/profile.d/lxd.sh

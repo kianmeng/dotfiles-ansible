@@ -3,7 +3,7 @@
 
 - name: install screen
   action: "{{ ansible_pkg_mgr }} name=screen state=present"
-  sudo: yes
+  become: yes
 
 - name: create symlink
   file: src={{ playbook_dir }}/roles/screen/files/.screenrc  dest=~/.screenrc state=link

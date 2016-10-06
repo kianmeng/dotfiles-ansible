@@ -2,11 +2,11 @@
 # tasks file for python - redhat
 
 - name: install python and related packages
-  sudo: yes
+  become: yes
   yum: pkg={{item}} state=present
   with_items:
-    - python-virtualenv 
+    - python-virtualenv
     - python-virtualenvwrapper
     - python-flake8
-    - python-matplotlib 
+    - python-matplotlib
     - numpy

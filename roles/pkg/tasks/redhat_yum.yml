@@ -2,9 +2,9 @@
 # tasks file for redhat / yum
 
 - name: Install yum-utils
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name=yum-utils state=present"
 
 - name: Ensure YUM aliases available for all users
-  sudo: yes
+  become: yes
   copy: src={{ playbook_dir }}/roles/pkg/files/yum.sh dest=/etc/profile.d/yum.sh

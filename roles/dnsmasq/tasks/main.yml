@@ -5,20 +5,20 @@
 # @see https://icann.org/namecollision
 
 - name: add .dev tld to dnsmasq
-  sudo: yes
-  lineinfile: 
+  become: yes
+  lineinfile:
     line: address=/dev/127.0.0.1
     create: yes
     state: present
     dest: /etc/NetworkManager/dnsmasq.d/tld.dev
 
 - name: restart network-manager
-  sudo: yes
+  become: yes
   service: name=network-manager state=restarted
   when: ansible_os_family == "Debian"
 
 - name: restart network-manager
-  sudo: yes
+  become: yes
   service: name=NetworkManager state=restarted
   when: ansible_os_family == "RedHat"
 

@@ -2,7 +2,7 @@
 # tasks file for xclip
 
 - name: install xclip
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name=xclip state=present"
 
 - name: create symlink

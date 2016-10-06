@@ -6,12 +6,12 @@
 # @see https://neovim.io/doc/user/nvim_python.html
 
 - name: enable neovim repository (fedora)
-  sudo: yes
+  become: yes
   command: dnf copr enable dperson/neovim -y
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
 
 - name: install neovim (fedora)
-  sudo: yes
+  become: yes
   action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
   with_items:
       - python2-devel
@@ -20,7 +20,7 @@
   when: ansible_distribution == "Fedora" and ansible_distribution_version|int >= 22
 
 - name: install nvim_python
-  sudo: yes
+  become: yes
   pip: name=neovim executable={{ item }}
   with_items:
       - pip2
@@ -32,4 +32,3 @@
 
 - name: .vimrc to .config/nvim/init.vim symlink
   file: src=/home/{{ ansible_env.USER }}/.vimrc  dest=/home/{{ ansible_env.USER }}/.config/nvim/init.vim state=link force=yes
-
