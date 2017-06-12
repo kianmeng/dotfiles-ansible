@@ -13,7 +13,7 @@ function lxdsh() {
     if [[ $# -eq 0 ]]; then
         echo "ERR: Missing container name. Cannot launch Bash Shell!"
     else
-        lxdd exec $1 /bin/bash
+        lxdd exec $1 /bin/sh
     fi
 }
 
