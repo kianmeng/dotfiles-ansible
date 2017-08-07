@@ -16,3 +16,10 @@
 
 - name: create file/dir aliases symlink
   file: src={{ playbook_dir }}/roles/bash/files/filedir.sh  dest=~/.bash.d/filedir.sh state=link
+
+# reload the Bash's resource file
+# @see https://stackoverflow.com/questions/22256884/not-possible-to-source-bashrc-with-ansible
+- name: source bashrc
+  shell: source $HOME/.bashrc
+  args:
+    executable: /bin/bash
