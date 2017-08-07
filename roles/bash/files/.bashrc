@@ -7,3 +7,5 @@ if [[ -f "/etc/bashrc" ]]; then
 fi
 
 . $HOME/.bashrc.load
+
+#export PATH=/home/ang/miniconda3/bin:$PATH

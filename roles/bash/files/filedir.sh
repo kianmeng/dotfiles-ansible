@@ -8,7 +8,7 @@ alias ....='cd ../../..'
 alias mkdir="mkdir -pv"
 
 # file listing
-alias ls='ls --color --group-directories-first -p -CF';
+alias ls='ls --color --group-directories-first -p -CF --author --time-style=long-iso';
 alias ll='ls -lh --color --group-directories-first';
 alias lsa='ls -ahCF --group-directories-first';
 alias lla='ls -alh --group-directories-first';
@@ -23,8 +23,8 @@ lf() {
 
 # search and replace
 # @see http://www.reddit.com/r/programming/comments/2tj6d6/findrep_easy_tool_to_find_and_replace/cnzy34o
-function findreplace { 
-    if [ ! $# == 2 ]; then 
+function findreplace {
+    if [ ! $# == 2 ]; then
         echo "Usage: find_replace <search_string> <replace_string>"
         return -1
     fi
@@ -46,3 +46,6 @@ alias lsi='ls -il'
 function rminode() {
     find . -inum $1 -delete
 }
+
+# @see https://www.topbug.net/blog/2016/09/27/make-gnu-less-more-powerful/
+export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
