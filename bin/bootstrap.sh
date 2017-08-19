@@ -25,13 +25,15 @@ function install_ansible_and_git() {
         sudo apt-get install -y git make python-pip
     elif [[ $($DEFAULT_PYTHON -mplatform | grep -Ei 'fedora|centos') ]];
     then
-        sudo yum install -y epel-release
-        sudo yum install -y git make
+	echo "bash"
+        sudo dnf install -y redhat-rpm-config
+        sudo dnf install -y git make
+	sudo dnf install -y ansible
     else
         echo -e "Error: Only RPM-based or DEB-based GNU/Linux distros are supported."
         exit 1
     fi
-    sudo -H pip install setuptools ansible ansible-lint ansible-shell
+    sudo -H pip install --upgrade setuptools ansible ansible-lint ansible-shell
 }
 
 install_ansible_and_git && git_clone_and_ansible_ping
