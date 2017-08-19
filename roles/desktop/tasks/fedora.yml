@@ -7,3 +7,4 @@
       - shutter
       - chrome-gnome-shell
       - bleachbit
+      - lm_sensors
