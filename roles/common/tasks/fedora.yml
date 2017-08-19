@@ -12,5 +12,5 @@
   changed_when: False
 
 - name: dnf - upgrade all packages
-  dnf: name=* state=stable
+  dnf: name=* state=latest
   become: yes
