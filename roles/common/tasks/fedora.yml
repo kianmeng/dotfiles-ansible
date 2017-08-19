@@ -11,6 +11,12 @@
   when: ansible_distribution_version|int >= 23
   changed_when: False
 
+- name: install common packages
+  become: yes
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+      - dnf-utils
+
 - name: dnf - upgrade all packages
   dnf: name=* state=latest
   become: yes
