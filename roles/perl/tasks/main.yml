@@ -11,6 +11,7 @@
 - name: install necessary perl packages
   become: yes
   cpanm: name={{ item }}
+         installdeps=True
   with_items:
       - Perl::Critic
       - Data::Dumper::Simple
