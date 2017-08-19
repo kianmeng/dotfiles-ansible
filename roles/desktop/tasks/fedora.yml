@@ -1,0 +1,9 @@
+- name: install desktop tools
+  become: yes
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items:
+      - gparted
+      - meld
+      - shutter
+      - chrome-gnome-shell
+      - bleachbit

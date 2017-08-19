@@ -1,14 +1,8 @@
 ---
 # tasks file for desktop
 
-- name: install desktop tools
-  become: yes
-  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
-  with_items:
-      - gparted
-      - meld
-      - shutter
-      - unity-tweak-tool
-      - vlc
-      - ubuntu-restricted-extras
-      - bleachbit
+- include: debian.yml
+  when: ansible_os_family == "Debian"
+
+- include: fedora.yml
+  when: ansible_distribution == "Fedora"
